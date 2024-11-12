@@ -36,51 +36,111 @@ sudo dnf install texlive-scheme-full texstudio
    - It's based on the IEEE template but stripped down to essentials
 4. Click the "Build & View" button (green play button) or press F5 to compile
 
-## GitHub Workflow
+## GitHub Setup and Workflow
 
-### Initial Repository Setup
+### First Time Git Setup
 
+1. Install Git on your computer:
+   - Windows: Download from [https://git-scm.com/download/windows](https://git-scm.com/download/windows)
+   - Mac: Open Terminal and type `git --version`. Follow the prompts to install.
+   - Linux: `sudo apt-get install git` (Ubuntu/Debian) or `sudo dnf install git` (Fedora)
+
+2. Configure Git (replace with your details):
 ```bash
-# Clone the repository
-git clone https://github.com/Brent-Dickinson/ECE551.git
-cd ECE551
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
 ```
 
-### Regular Workflow
+### Initial Repository Setup (Do This Once)
 
-Always follow these steps when working on the paper:
-
-1. Before starting work:
+1. Create a directory for your project:
 ```bash
-# Get the latest changes
+# On Windows:
+mkdir C:\Projects\ECE551
+cd C:\Projects\ECE551
+
+# On Mac/Linux:
+mkdir ~/Projects/ECE551
+cd ~/Projects/ECE551
+```
+
+2. Clone the repository:
+```bash
+git clone https://github.com/Brent-Dickinson/ECE551.git .
+```
+Note: The period (.) at the end tells Git to clone into the current directory
+
+### Daily Workflow
+
+#### Starting Your Work Session:
+1. Open your terminal/command prompt
+2. Navigate to your project directory:
+```bash
+# On Windows:
+cd C:\Projects\ECE551
+
+# On Mac/Linux:
+cd ~/Projects/ECE551
+```
+
+3. Get the latest changes:
+```bash
 git pull origin main
 ```
 
-2. While working:
+#### While Working:
+1. After making changes (like editing paper.tex), check what files you've modified:
 ```bash
-# Check status of your changes
 git status
-
-# Add your changes
-git add .
-
-# Commit your changes with a descriptive message
-git commit -m "Description of your changes"
 ```
 
-3. After completing work:
+2. Add your changes:
 ```bash
-# Push your changes
+# To add all changes:
+git add .
+
+# Or to add specific files:
+git add paper.tex
+git add figures/new-figure.png
+```
+
+3. Save (commit) your changes:
+```bash
+git commit -m "Write a message describing what you changed"
+```
+Example messages:
+- "Added introduction section"
+- "Updated literature review"
+- "Added new figure for methodology"
+
+#### Ending Your Work Session:
+1. Push your changes to GitHub:
+```bash
 git push origin main
 ```
 
-### Best Practices
+### If Something Goes Wrong
 
-1. Pull before starting any new work
-2. Commit frequently with clear messages
-3. Push your changes at the end of each working session
-4. Communicate with your partner about major changes
-5. Keep backup copies of important files
+1. If you made mistakes and want to start over:
+```bash
+git fetch origin
+git reset --hard origin/main
+```
+WARNING: This will delete all your local changes!
+
+2. If push is rejected:
+```bash
+# Get latest changes first
+git pull origin main
+
+# Then try pushing again
+git push origin main
+```
+
+3. If you see "merge conflicts":
+   - Contact your partner before proceeding
+   - Decide whose changes to keep
+   - Or seek help if unsure
 
 ## Repository Structure
 
@@ -102,19 +162,6 @@ The bibliography will be written directly in the paper.tex file using the IEEE f
 ```
 
 To cite references in the text, use the `\cite{ref1}` command.
-
-## Common Issues and Solutions
-
-1. **LaTeX compilation errors**
-   - Check the log file for specific error messages
-   - Ensure all required packages are installed
-   - Verify syntax in recent changes
-   - Refer to `IEEE template.tex` for correct formatting examples
-
-2. **Git merge conflicts**
-   - Communicate with your partner before making major changes
-   - Resolve conflicts by carefully reviewing both versions
-   - When in doubt, make a backup before attempting to resolve
 
 ## Additional Resources
 
